@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>داناوان | پژوهش لبه‌ی فناوری هوش مصنوعی و پیاده‌سازی کاربردی</title>
+<meta name="description" content="داناوان — آژانس پژوهش و مشاوره‌ی هوش مصنوعی. از مرز پژوهش‌های هوش مصنوعی عامل‌محور تا پیاده‌سازی عملی در کسب‌وکار شما.">
+<link rel="icon" type="image/svg+xml" href="danaone-logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#141414;
+  --paper:#eeeae1;
+  --paper-2:#e4dfd3;
+  --card:#f6f3eb;
+  --accent:#ff6a3d;
+  --text:#161514;
+  --muted:#6b6459;
+  --line:#141414;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Vazirmatn',Tahoma,sans-serif;background:var(--paper);color:var(--text);line-height:1.7;font-size:16px}
+.mono{font-family:'Space Mono',monospace}
+.wrap{max-width:1160px;margin:0 auto;padding:0 28px}
+a{color:inherit}
+
+/* corner-bracket decoration, hallmark of the blueprint-modular look */
+.bracketed{position:relative}
+.bracketed::before,.bracketed::after{content:"";position:absolute;width:14px;height:14px;border-color:var(--ink)}
+.bracketed::before{top:6px;left:6px;border-top:1.5px solid var(--ink);border-right:1.5px solid var(--ink);width:12px;height:12px;border-left:none;border-bottom:none}
+.bracketed::after{bottom:6px;right:6px;border-bottom:1.5px solid var(--ink);border-left:1.5px solid var(--ink);width:12px;height:12px;border-top:none;border-right:none}
+
+header{position:sticky;top:0;z-index:50;background:rgba(238,234,225,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:190px}
+.brand img{height:170px;width:auto;display:block}
+.navlinks{display:flex;gap:24px;font-size:14px;color:var(--muted)}
+.navlinks a{text-decoration:none;transition:color .15s}
+.navlinks a:hover{color:var(--text)}
+.cta-btn{background:var(--ink);color:var(--paper);padding:10px 20px;font-size:14px;text-decoration:none;font-weight:500;border:1px solid var(--ink)}
+
+.hero{padding:56px 0 8px;border-bottom:1px solid var(--line)}
+.hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:0;align-items:stretch}
+.hero-left{padding-left:44px}
+.eyebrow-txt{color:var(--muted);font-size:13px;margin-bottom:16px}
+h1{font-size:40px;font-weight:800;line-height:1.35;max-width:14ch}
+.hero p.lead{margin-top:20px;font-size:17px;color:var(--muted);max-width:44ch}
+.hero-actions{margin-top:28px;display:flex;gap:12px}
+.btn-primary{background:var(--accent);color:#fff;padding:13px 26px;text-decoration:none;font-weight:600;font-size:15px;border:1px solid var(--accent)}
+.btn-ghost{border:1px solid var(--line);padding:13px 26px;text-decoration:none;font-size:15px;color:var(--text)}
+
+/* 3x3 interactive grid */
+.grid9{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);border-top:1px solid var(--line);border-right:1px solid var(--line)}
+.g-center{grid-column:2;grid-row:2;background:var(--card);display:flex;align-items:center;justify-content:center;padding:18px;border-left:1px solid var(--line);border-bottom:1px solid var(--line)}
+.g-center img{width:100%;height:auto}
+.flip{perspective:700px;aspect-ratio:1;border-left:1px solid var(--line);border-bottom:1px solid var(--line)}
+.flip-inner{position:relative;width:100%;height:100%;transition:transform .55s cubic-bezier(.4,.2,.2,1);transform-style:preserve-3d}
+.flip:hover .flip-inner{transform:rotateY(180deg)}
+.flip-face{position:absolute;inset:0;backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.flip-front{background:var(--paper)}
+.flip-front .dot{width:7px;height:7px;border-radius:50%;background:var(--muted);opacity:.4}
+.flip-back{background:var(--ink);color:#fff;transform:rotateY(180deg)}
+.flip-back .brandmark{font-family:'Space Mono',monospace;font-weight:700;font-size:13px;letter-spacing:.5px}
+.flip-back .swatch{width:22px;height:3px;margin-bottom:2px}
+.rail-note{font-size:12px;color:var(--muted);margin-top:10px;text-align:center;padding-bottom:10px}
+
+@keyframes riseIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.hero-grid > *{animation:riseIn .6s ease both}
+
+.ticker-wrap{overflow:hidden;border-top:1px solid var(--line);background:var(--card);padding:14px 0}
+.ticker{display:flex;gap:40px;width:max-content;animation:tick 26s linear infinite}
+.ticker span{font-size:14px;color:var(--muted);display:flex;align-items:center;gap:10px;white-space:nowrap}
+.ticker span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent)}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.band{background:var(--ink);color:var(--paper);padding:44px 0}
+.band .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.band h2{font-size:20px;font-weight:600;color:var(--paper)}
+.band p{color:#c9c4bb;margin-top:14px;font-size:15px}
+
+.section{padding:64px 0}
+.section-head{max-width:60ch;margin-bottom:32px}
+.section-head h2{font-size:28px;font-weight:800}
+.section-head p{color:var(--muted);margin-top:12px;font-size:15px}
+
+.frontier{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.frontier-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line)}
+.frontier-item{background:var(--card);padding:22px 20px;border-left:1px solid var(--line)}
+.frontier-item:last-child{border-left:none}
+.frontier-item h3{font-size:15px;font-weight:600}
+.frontier-item p{color:var(--muted);font-size:13px;margin-top:8px}
+
+.services{display:grid;grid-template-columns:repeat(2,1fr);border:1px solid var(--line)}
+.svc{background:var(--card);padding:26px 24px;border-bottom:1px solid var(--line);border-left:1px solid var(--line)}
+.svc-tag{font-size:11px;color:var(--accent);font-weight:700;font-family:'Space Mono',monospace}
+.svc h3{font-size:17px;font-weight:600;margin-top:8px}
+.svc p{color:var(--muted);font-size:13.5px;margin-top:10px}
+
+.approach{background:var(--paper-2)}
+.approach-list{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line)}
+.approach-item{padding:24px;border-left:1px solid var(--line);background:var(--card)}
+.approach-item .mark{font-family:'Space Mono',monospace;font-size:12px;color:var(--accent);margin-bottom:12px}
+.approach-item h3{font-size:15px;font-weight:600}
+.approach-item p{color:var(--muted);font-size:13.5px;margin-top:8px}
+
+.division{border:1px solid var(--line);margin-bottom:24px}
+.division-head{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--line);background:var(--card)}
+.division-head h3{font-size:19px;font-weight:800}
+.division-head .kicker{font-size:12px;color:var(--accent);font-weight:700;font-family:'Space Mono',monospace}
+.division-body{padding:22px 24px;background:var(--paper)}
+.division-body > p{color:var(--muted);font-size:14px;max-width:62ch;margin-bottom:20px}
+.news-label{font-size:11px;color:var(--muted);margin-bottom:12px;border-bottom:1px solid var(--line);padding-bottom:8px;font-family:'Space Mono',monospace}
+.news-item{display:grid;grid-template-columns:90px 1fr;gap:18px;padding:14px 0;border-bottom:1px solid var(--line)}
+.news-item:last-child{border-bottom:none}
+.news-date{font-size:11px;color:var(--muted);white-space:nowrap;font-family:'Space Mono',monospace}
+.news-item h4{font-size:14.5px;font-weight:600}
+.news-item p{color:var(--muted);font-size:13px;margin-top:5px}
+
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line)}
+.contact-box{background:var(--card);padding:30px;border-right:1px solid var(--line)}
+.contact-info{padding:30px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
+.field input,.field textarea{width:100%;border:1px solid var(--line);padding:11px 12px;font-family:inherit;font-size:14px;background:var(--paper)}
+.meta-line{font-size:14px;color:var(--muted);margin-top:12px}
+.meta-line b{color:var(--text)}
+
+footer{border-top:1px solid var(--line);padding:24px 0}
+.footer-top{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:6px}
+.footer-top a{text-decoration:underline}
+.giant-mark{font-family:'Space Mono',monospace;font-weight:700;font-size:min(13vw,120px);line-height:.85;letter-spacing:-2px;color:var(--ink);padding:20px 0 8px;overflow:hidden;white-space:nowrap}
+
+@media(max-width:820px){
+  .hero-grid,.band .wrap,.services,.approach-list,.contact-grid,.frontier-grid{grid-template-columns:1fr}
+  .hero-left{padding-left:0}
+  h1{font-size:30px}
+  .services .svc, .frontier-item, .approach-item{border-left:none;border-top:1px solid var(--line)}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand"><img src="danaone-logo.svg" alt="داناوان"></div>
+    <nav class="navlinks">
+      <a href="#frontier">پژوهش‌های لبه</a>
+      <a href="#services">خدمات</a>
+      <a href="#startup">استارتاپ</a>
+      <a href="#thinktank">اندیشکده</a>
+      <a href="#contact">تماس</a>
+    </nav>
+    <a href="#contact" class="cta-btn">درخواست مشاوره</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-left">
+      <div class="eyebrow-txt mono">// AI RESEARCH & CONSULTING AGENCY</div>
+      <h1>از مرز پژوهش هوش مصنوعی، تا خط تولید کسب‌وکار شما</h1>
+      <p class="lead">داناوان جایی است که یافته‌های تازه‌ی پژوهش‌های هوش مصنوعی عامل‌محور، مستقیم و بدون واسطه به تصمیم و فرآیند واقعی کسب‌وکار شما تبدیل می‌شود — نه یک ارائه‌ی نظری، بلکه یک سامانه‌ی کارکننده.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">شروع گفت‌وگو</a>
+        <a href="#services" class="btn-ghost">مرور خدمات</a>
+      </div>
+    </div>
+    <div>
+      <div class="grid9">
+        <div class="flip"><div class="flip-inner">
+          <div class="flip-face flip-front"><div class="dot"></div></div>
+          <div class="flip-face flip-back"><div class="swatch" style="background:#74aa9c"></div><span class="brandmark">GPT</span></div>
+        </div></div>
+        <div class="flip"><div class="flip-inner">
+          <div class="flip-face flip-front"><div class="dot"></div></div>
+          <div class="flip-face flip-back"><div class="swatch" style="background:#4285f4"></div><span class="brandmark">GEMINI</span></div>
+        </div></div>
+        <div class="flip"><div class="flip-inner">
+          <div class="flip-face flip-front"><div class="dot"></div></div>
+          <div class="flip-face flip-back"><div class="swatch" style="background:#da7756"></div><span class="brandmark">CLAUDE</span></div>
+        </div></div>
+        <div class="flip"><div class="flip-inner">
+          <div class="flip-face flip-front"><div class="dot"></div></div>
+          <div class="flip-face flip-back"><div class="swatch" style="background:#0866ff"></div><span class="brandmark">LLAMA</span></div>
+        </div></div>
+
+        <div class="g-center bracketed"><img src="danaone-logo.svg" alt="داناوان"></div>
+
+        <div class="flip"><div class="flip-inner">
+          <div class="flip-face flip-front"><div class="dot"></div></div>
+          <div class="flip-face flip-back"><div class="swatch" style="background:#ffffff"></div><span class="brandmark">GROK</span></div>
+        </div></div>
+        <div class="flip"><div class="flip-inner">
+          <div class="flip-face flip-front"><div class="dot"></div></div>
+          <div class="flip-face flip-back"><div class="swatch" style="background:#4d6bfe"></div><span class="brandmark">DEEPSEEK</span></div>
+        </div></div>
+        <div class="flip"><div class="flip-inner">
+          <div class="flip-face flip-front"><div class="dot"></div></div>
+          <div class="flip-face flip-back"><div class="swatch" style="background:#fa520f"></div><span class="brandmark">MISTRAL</span></div>
+        </div></div>
+        <div class="flip"><div class="flip-inner">
+          <div class="flip-face flip-front"><div class="dot"></div></div>
+          <div class="flip-face flip-back"><div class="swatch" style="background:#665cf0"></div><span class="brandmark">QWEN</span></div>
+        </div></div>
+      </div>
+      <p class="rail-note">نشانگر را روی هر خانه ببرید — خانواده‌ی مدل‌های زبانی بزرگ امروز را ببینید.</p>
+    </div>
+  </div>
+
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <span>تصمیم</span><span>داده</span><span>یادگیری</span><span>استنتاج</span><span>حافظه</span><span>ارزیابی</span><span>حاکمیت</span><span>اجرا</span><span>پایش</span><span>عامل</span><span>بازخورد</span><span>مقیاس</span>
+      <span>تصمیم</span><span>داده</span><span>یادگیری</span><span>استنتاج</span><span>حافظه</span><span>ارزیابی</span><span>حاکمیت</span><span>اجرا</span><span>پایش</span><span>عامل</span><span>بازخورد</span><span>مقیاس</span>
+    </div>
+  </div>
+</section>
+
+<section class="section frontier" id="frontier">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>پژوهش‌های لبه</h2>
+      <p>خط‌های پژوهشی فعالی که امروز روی میز کار داناوان هستند — و مستقیم به خدمات ما تغذیه می‌شوند.</p>
+    </div>
+    <div class="frontier-grid">
+      <div class="frontier-item"><h3>سامانه‌های چندعامله</h3><p>هماهنگی، ارتباط و تقسیم وظیفه بین عامل‌های هوش مصنوعی مستقل.</p></div>
+      <div class="frontier-item"><h3>ارزیابی و اعتمادپذیری مدل</h3><p>روش‌های سنجش دقت، سوگیری و پایداری مدل‌ها پیش از استقرار عملیاتی.</p></div>
+      <div class="frontier-item"><h3>هوش مصنوعی مقرون‌به‌صرفه</h3><p>کاهش هزینه‌ی استنتاج و بهره‌وری منابع برای استقرار در مقیاس سازمانی.</p></div>
+      <div class="frontier-item"><h3>تعامل انسان و عامل</h3><p>طراحی نقاط تصمیم انسانی در فرآیندهای خودکار، برای حفظ کنترل معنادار.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div>
+      <h2>چرا فاصله‌ی بین پژوهش و استقرار همچنان زیاد است</h2>
+      <p>بیشتر سازمان‌ها گزارش‌های روند هوش مصنوعی را می‌خوانند، اما وقتی نوبت به اجرا می‌رسد، بین ابزار و فرآیند واقعی‌شان یک شکاف پر نشده باقی می‌ماند.</p>
+    </div>
+    <div>
+      <h2>داناوان این شکاف را پر می‌کند</h2>
+      <p>تیم ما هم‌زمان پژوهشگر و مجری است — یافته‌های تازه را مستقیم به معماری، حاکمیت و فرآیند عملیاتی کسب‌وکار شما وصل می‌کنیم، بدون واسطه‌ی چند لایه مشاوره.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>خدمات</h2>
+      <p>هر خدمت، برگرفته از روندی است که امروز در صف مقدم صنعت هوش مصنوعی در حال شکل‌گیری است — منتها متناسب با مقیاس و آمادگی واقعی کسب‌وکار شما پیاده می‌شود.</p>
+    </div>
+    <div class="services">
+      <div class="svc"><div class="svc-tag">01 / STRATEGY</div><h3>طراحی سیستم‌های هوش مصنوعی عامل‌محور</h3><p>معماری عامل‌های چندگانه‌ای که می‌توانند با هم هماهنگ شوند و فرآیندهای چندمرحله‌ای کسب‌وکار را با نظارت انسانی مناسب اجرا کنند.</p></div>
+      <div class="svc"><div class="svc-tag">02 / DATA</div><h3>پیاده‌سازی بازیابی-افزوده‌ی تولید محتوا (RAG)</h3><p>اتصال مدل‌های زبانی به دانش و اسناد اختصاصی سازمان شما، تا پاسخ‌ها مبتنی بر واقعیت داده‌های خودتان باشند، نه حدس مدل.</p></div>
+      <div class="svc"><div class="svc-tag">03 / GOVERNANCE</div><h3>چارچوب حاکمیت و مدیریت ریسک هوش مصنوعی</h3><p>تعیین مرزهای تصمیم، مسیر ممیزی و نقاط کنترل انسانی — پیش از آنکه عامل‌های هوش مصنوعی وارد فرآیندهای حساس شوند.</p></div>
+      <div class="svc"><div class="svc-tag">04 / OPS</div><h3>AgentOps — پایش و بهینه‌سازی عامل‌ها در محیط واقعی</h3><p>نظارت مداوم بر رفتار، هزینه و دقت عامل‌های مستقر شده، با بازخورد چرخه‌ای برای بهبود مستمر عملکرد.</p></div>
+      <div class="svc"><div class="svc-tag">05 / READINESS</div><h3>ارزیابی بلوغ داده و آمادگی سازمانی</h3><p>پیش از هر استقرار، بررسی می‌کنیم داده، زیرساخت و فرآیندهای شما تا چه حد آماده‌ی هوش مصنوعی عملیاتی هستند.</p></div>
+      <div class="svc"><div class="svc-tag">06 / VERTICAL</div><h3>عامل‌های اختصاصی صنعت</h3><p>توسعه‌ی عامل‌های هوش مصنوعی متناسب با منطق واقعی صنعت شما — از خدمات مالی و سلامت تا خرده‌فروشی و تولید.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0" id="startup">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>دو بازوی داناوان</h2>
+      <p>یک بازو رو به بازار است، یک بازو رو به پژوهش — اما هر دو از یک منبع تغذیه می‌شوند.</p>
+    </div>
+
+    <div class="division">
+      <div class="division-head"><h3>بخش استارتاپ</h3><span class="kicker">اجرا و مقیاس‌دهی</span></div>
+      <div class="division-body">
+        <p>بازوی اجرایی داناوان، کنار تیم‌های نوپا و کسب‌وکارهای کوچک می‌نشیند تا اولین گردش‌کار هوش مصنوعی‌شان را از ایده تا استقرار واقعی پیش ببرد — با تمرکز بر ابزارهای آماده، ریسک کم، و اثبات سریع.</p>
+        <div class="news-label">LATEST — تازه‌های اتوماسیون برای استارتاپ‌ها</div>
+        <div class="news-item"><div class="news-date">شهریور ۱۴۰۵</div><div><h4>مایکروسافت Power Automate را برای عامل‌های هوشمند گسترش داد</h4><p>موج انتشار جدید مایکروسافت که تا شهریور ادامه دارد، مدیریت گردش‌کار ابری و اقدامات عامل‌محور Copilot Studio را ساده‌تر کرده — گزینه‌ای در دسترس‌تر برای تیم‌های کوچک که می‌خواهند بدون کدنویسی اتوماسیون بسازند.</p></div></div>
+        <div class="news-item"><div class="news-date">شهریور ۱۴۰۵</div><div><h4>UiPath زمان‌اجرای یکپارچه‌ی عامل‌های مکالمه‌ای را عرضه کرد</h4><p>نسخه‌ی تازه‌ی UiPath امکان تأیید فراخوانی ابزار، ردیابی کامل اقدامات و هویت اجرایی مجزا برای هر عامل را اضافه کرده — گامی مهم برای استارتاپ‌هایی که می‌خواهند اتوماسیون را با اطمینان بیشتری گسترش دهند.</p></div></div>
+        <div class="news-item"><div class="news-date">شهریور ۱۴۰۵</div><div><h4>اکسنچر و گوگل کلود واحد مشترک استقرار عامل‌های هوشمند راه انداختند</h4><p>این همکاری، مسیر عملی‌سازی هوش مصنوعی عامل‌محور روی زیرساخت Gemini Enterprise را برای کسب‌وکارها کوتاه‌تر می‌کند — روندی که داناوان از نزدیک برای مشتریان استارتاپی خود دنبال می‌کند.</p></div></div>
+      </div>
+    </div>
+
+    <div class="division" id="thinktank">
+      <div class="division-head"><h3>بخش اندیشکده</h3><span class="kicker">پژوهش و تحلیل</span></div>
+      <div class="division-body">
+        <p>بازوی پژوهشی داناوان، روندهای فنی و ریسک‌های نوظهور هوش مصنوعی را زیر ذره‌بین می‌برد و تحلیل عمیق‌تر — نه فقط خبر — در اختیار تصمیم‌گیران می‌گذارد.</p>
+        <div class="news-label">LATEST — تازه‌های اتوماسیون برای تصمیم‌گیران</div>
+        <div class="news-item"><div class="news-date">شهریور ۱۴۰۵</div><div><h4>چارچوب «فراتر از جعبه‌گفت‌وگو» رابط کاربری عامل‌ها را بازتعریف می‌کند</h4><p>استودیوی طراحی Wavespace چارچوبی معرفی کرده که به‌جای پاسخ‌های متنی ساده، استدلال قابل‌مشاهده، نقاط تأیید انسانی و رابط‌های اختصاصی هر وظیفه را جایگزین گفت‌وگوی عمومی می‌کند — سرنخی برای طراحی محصولات هوش مصنوعی قابل‌اعتماد.</p></div></div>
+        <div class="news-item"><div class="news-date">شهریور ۱۴۰۵</div><div><h4>گزارش تازه: هزاران افزونه‌ی هوش مصنوعی عمومی از منابع تأییدنشده دستور می‌گیرند</h4><p>پژوهشی روی نزدیک به ۱۸ هزار افزونه‌ی عمومی نشان داده بسیاری از آن‌ها دستورهایشان را از منابع خارجی تأییدنشده می‌گیرند — یادآوری‌ای جدی برای هر سازمانی که افزونه‌های شخص ثالث را بدون بررسی نصب می‌کند.</p></div></div>
+        <div class="news-item"><div class="news-date">شهریور ۱۴۰۵</div><div><h4>اوپن‌ای‌آی به نقص مهار یک عامل هوشمند اعتراف کرد</h4><p>این شرکت رسماً پذیرفته یکی از عامل‌هایش از مرزهای تعیین‌شده خارج شده و وعده‌ی یک چارچوب شفاف افشا داده — نمونه‌ای عینی از چرا «حاکمیت از روز اول» یک شعار نیست، یک ضرورت است.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section approach" id="approach">
+  <div class="wrap">
+    <div class="section-head"><h2>رویکرد ما</h2></div>
+    <div class="approach-list">
+      <div class="approach-item"><div class="mark">01</div><h3>بی‌طرف نسبت به پلتفرم</h3><p>به هیچ فروشنده یا پلتفرم خاصی وابسته نیستیم؛ راهکار را بر اساس نیاز شما انتخاب می‌کنیم، نه بر اساس شراکت تجاری.</p></div>
+      <div class="approach-item"><div class="mark">02</div><h3>حاکمیت از روز اول</h3><p>هر پروژه با تعریف مرز تصمیم و مسیر ممیزی آغاز می‌شود، نه به‌عنوان یک قدم اضافه در پایان کار.</p></div>
+      <div class="approach-item"><div class="mark">03</div><h3>تیم ارشد، درگیر از نزدیک</h3><p>پژوهشگران و مهندسان ارشد ما مستقیم در پروژه حضور دارند — نه یک لایه‌ی واسط بین شما و تیم اجرایی.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="section-head"><h2>گفت‌وگو را شروع کنیم</h2><p>برای هر کسب‌وکاری، نقطه‌ی شروع هوش مصنوعی متفاوت است. اول می‌شنویم، بعد پیشنهاد می‌دهیم.</p></div>
+    <div class="contact-grid">
+      <div class="contact-box">
+        <div class="field"><label>نام و نام سازمان</label><input type="text"></div>
+        <div class="field"><label>ایمیل یا تماس</label><input type="text"></div>
+        <div class="field"><label>توضیح کوتاه نیاز شما</label><textarea rows="4"></textarea></div>
+        <a href="#" class="btn-primary" style="display:inline-block">ارسال درخواست</a>
+      </div>
+      <div class="contact-info">
+        <div class="meta-line">وب‌سایت: <b>danaone.ir</b></div>
+        <div class="meta-line">تلفن تماس: <b>۰۹۳۹۵۰۹۹۹۳۳</b></div>
+        <div class="meta-line">ایمیل: <b>info@danaone.ir</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <span>© داناوان — پژوهش و مشاوره‌ی هوش مصنوعی</span>
+      <span>طراحی توسط واحد وب‌دیزاین: <a href="https://parvizmoin.ir" target="_blank" rel="noopener">parvizmoin.ir</a></span>
+    </div>
+    <div class="giant-mark">DANAONE</div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -79,12 +79,18 @@ h1{font-size:40px;font-weight:800;line-height:1.35;max-width:14ch}
 .band h2{font-size:20px;font-weight:600;color:var(--paper)}
 .band p{color:#c9c4bb;margin-top:14px;font-size:15px}
 
-.promo-banner{background:var(--ink);color:var(--paper);padding:36px 0;border-bottom:1px solid var(--line)}
-.promo-inner{display:flex;align-items:center;justify-content:space-between;gap:28px}
-.promo-text .svc-tag{color:var(--accent)}
-.promo-text h2{font-size:21px;font-weight:800;color:var(--paper);margin:8px 0}
-.promo-text p{color:#c9c4bb;font-size:14px;max-width:56ch}
-.promo-banner .btn-primary{white-space:nowrap;flex-shrink:0}
+.promo-section{padding:32px 0}
+.promo-banner{background:linear-gradient(155deg,#ff7a4d,var(--accent) 60%);color:#fff;padding:38px 40px;position:relative;overflow:hidden;border-radius:22px;box-shadow:0 30px 60px -20px rgba(255,106,61,.45),0 10px 25px -8px rgba(0,0,0,.18);}
+.promo-banner::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,rgba(255,255,255,.07) 0 2px,transparent 2px 22px);pointer-events:none}
+.promo-inner{display:flex;align-items:center;justify-content:space-between;gap:28px;position:relative}
+.promo-badge{display:inline-block;background:#fff;color:var(--accent);font-family:'Space Mono',monospace;font-size:11px;font-weight:700;padding:4px 10px;letter-spacing:.5px;margin-bottom:10px;border-radius:20px}
+.promo-text h2{font-size:23px;font-weight:800;color:#fff;margin:0 0 8px}
+.promo-text p{color:rgba(255,255,255,.92);font-size:14.5px;max-width:56ch}
+.promo-cta{background:#fff;color:var(--ink)!important;padding:14px 28px;text-decoration:none;font-weight:700;font-size:15px;white-space:nowrap;flex-shrink:0;border:2px solid #fff;border-radius:10px;transition:background .15s,color .15s,transform .15s;position:relative}
+.promo-cta:hover{background:transparent;color:#fff!important;transform:translateY(-2px)}
+.promo-callout{position:absolute;bottom:-6px;right:180px;font-family:'Vazirmatn',sans-serif;font-weight:800;font-size:15px;color:#141414;transform:rotate(-6deg);white-space:nowrap;pointer-events:none}
+.promo-callout svg{position:absolute;top:26px;right:-8px;width:70px;height:60px;transform:scaleX(-1)}
+@media(max-width:820px){ .promo-callout{display:none} }
 
 .section{padding:64px 0}
 .section-head{max-width:60ch;margin-bottom:32px}
@@ -144,6 +150,7 @@ footer{border-top:1px solid var(--line);padding:24px 0}
   h1{font-size:30px}
   .services .svc, .frontier-item, .approach-item{border-left:none;border-top:1px solid var(--line)}
   .promo-inner{flex-direction:column;align-items:flex-start}
+  .promo-cta{width:100%;text-align:center}
 }
 </style>
 </head>
@@ -224,14 +231,22 @@ footer{border-top:1px solid var(--line);padding:24px 0}
   </div>
 </section>
 
-<section class="promo-banner">
-  <div class="wrap promo-inner">
-    <div class="promo-text">
-      <div class="svc-tag mono">تازه — از آزمایشگاه داناوان</div>
-      <h2>رام‌کننده: پرامپت‌های مهندسی‌شده، تحویل خودکار</h2>
-      <p>پرامپت‌های تست‌شده برای طرح کسب‌وکار، سئو و تولید تصویر محصول — پرداخت با تتر، بدون کارت بانکی، تحویل فوری و خودکار همان لحظه‌ی پرداخت.</p>
+<section class="promo-section">
+  <div class="wrap">
+    <div class="promo-banner promo-inner">
+      <div class="promo-text">
+        <span class="promo-badge mono">جدید — از آزمایشگاه داناوان</span>
+        <h2>رام‌کننده: پرامپت‌های مهندسی‌شده، تحویل خودکار</h2>
+        <p>پرامپت‌های تست‌شده برای طرح کسب‌وکار، سئو و تولید تصویر محصول — پرداخت با تتر، بدون کارت بانکی، تحویل فوری و خودکار همان لحظه‌ی پرداخت.</p>
+      <p style="margin-top:8px;font-weight:700">برای دریافت کد تخفیف تماس بگیرید: <span style="direction:ltr;display:inline-block">۰۹۳۹۵۰۹۹۹۳۳</span></p>
+      </div>
+      <a href="https://tamer-shop.parviz-gateway1.workers.dev" target="_blank" rel="noopener" class="promo-cta">
+        مشاهده و خرید پرامپت‌ها
+        <span class="promo-callout">۲ دقیقه تا تحویل
+          <svg viewBox="0 0 70 60" xmlns="http://www.w3.org/2000/svg"><path d="M62 6c-8 18-24 30-42 34" fill="none" stroke="#141414" stroke-width="4" stroke-linecap="round"/><path d="M8 30l12 10 8-14" fill="none" stroke="#141414" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
     </div>
-    <a href="https://tamer-shop.parviz-gateway1.workers.dev" target="_blank" rel="noopener" class="btn-primary">مشاهده و خرید پرامپت‌ها</a>
   </div>
 </section>
 

@@ -163,13 +163,27 @@ footer{border-top:1px solid var(--line);padding:24px 0}
 
 @font-face{font-family:"Vazirmatn";src:url(/workshop/vazirmatn-subset.woff2) format("woff2");font-weight:100 900;font-display:swap}
 .infostrip{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);background:var(--card)}
-.info3{display:grid;grid-template-columns:repeat(3,1fr)}
+.info3{display:grid;grid-template-columns:repeat(4,1fr)}
 .info3 > div{padding:22px 24px;border-inline-start:1px solid var(--ink);display:flex;flex-direction:column;gap:4px}
 .info3 > div:first-child{border-inline-start:0}
 .info3 .mono{font-size:11px;color:var(--accent);font-weight:700}
 .info3 b{font-weight:800;font-size:clamp(1.15rem,2.2vw,1.6rem)}
 .info3 small{color:var(--muted);font-weight:500}
 @media (max-width:860px){.info3{grid-template-columns:1fr}.info3 > div{border-inline-start:0;border-top:1px solid var(--ink)}.info3 > div:first-child{border-top:0}}
+.reg-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:34px;align-items:start}
+.rform{display:grid;gap:14px;border:1px solid var(--ink);background:var(--card);padding:24px}
+.rform.small{padding:16px;margin-top:14px;gap:10px}
+.rform label{display:grid;gap:6px;font-weight:700;font-size:14px}
+.rform input,.rform select,.rform textarea{font:inherit;padding:10px 12px;border:1px solid var(--ink);background:#fff;color:var(--ink);border-radius:0;width:100%}
+.rform textarea{min-height:76px;resize:vertical}
+.rform .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.rform input:focus-visible,.rform select:focus-visible,.rform textarea:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
+.hpf{position:absolute;inset-inline-start:-9999px;width:1px;height:1px;opacity:0}
+.reg-msg{min-height:1.4em;font-weight:700}.reg-msg.ok{color:#1b6b3a}.reg-msg.err{color:#c0321a}
+.reg-done{border:2px solid var(--ink);background:#fff;padding:18px;display:grid;gap:8px}
+.reg-done .code{font-family:'Space Mono',ui-monospace,monospace;font-weight:700;letter-spacing:.2em;direction:ltr;unicode-bidi:isolate}
+.rside h3{margin:0 0 8px}.rside p{margin:0;color:var(--muted)}
+@media (max-width:860px){.reg-grid{grid-template-columns:1fr}.rform .two{grid-template-columns:1fr}.info3{grid-template-columns:1fr}}
 .redact-file{border:2px solid var(--ink);background:var(--card);padding:22px;position:relative}
 .redact-file .stamp{position:absolute;top:-14px;inset-inline-end:18px;background:var(--accent);color:#fff;padding:3px 12px;font-weight:800;font-size:12px;letter-spacing:.12em;transform:rotate(-3deg)}
 .redact-row{display:grid;grid-template-columns:54px 1fr;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid rgba(20,20,20,.25)}
@@ -201,9 +215,9 @@ footer{border-top:1px solid var(--line);padding:24px 0}
       <a href="#why">چرا حالا</a>
       <a href="#for">برای کیست</a>
       <a href="#file">پرونده‌ی کارگاه</a>
-      <a href="#join">ثبت‌نام</a>
+      <a href="#register">ثبت‌نام</a>
     </nav>
-    <a href="#join" class="cta-btn">ثبت‌نام</a>
+    <a href="#register" class="cta-btn">ثبت‌نام</a>
   </div>
 </header>
 
@@ -214,7 +228,7 @@ footer{border-top:1px solid var(--line);padding:24px 0}
       <h1>اقتصاد عامل‌ها: وقتی ماشین‌ها خرید می‌کنند</h1>
       <p class="lead">تا دیروز فقط انسان‌ها پرداخت می‌کردند. امروز نرم‌افزارها شروع کرده‌اند به انتخاب، مقایسه و پرداخت. این کارگاه نشان می‌دهد این اقتصاد تازه از درون چه شکلی دارد و کسب‌وکار شما کجای آن می‌ایستد. بخشی از ماجرا را فقط در خود جلسه می‌شنوید.</p>
       <div class="hero-actions">
-        <a href="https://t.me/sirparviz?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%AB%D8%A8%D8%AA%E2%80%8C%D9%86%D8%A7%D9%85%20%D8%AF%D8%B1%20%DA%A9%D8%A7%D8%B1%DA%AF%D8%A7%D9%87%20%C2%AB%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF%20%D8%B9%D8%A7%D9%85%D9%84%E2%80%8C%D9%87%D8%A7%C2%BB%20%28%DB%B2%DB%B6%20%D8%AA%D8%A7%20%DB%B2%DB%B9%20%D8%A2%D8%A8%D8%A7%D9%86%29%20%D8%A7%D8%B7%D9%84%D8%A7%D8%B9%D8%A7%D8%AA%20%D9%85%DB%8C%E2%80%8C%D8%AE%D9%88%D8%A7%D9%87%D9%85" class="btn-primary" target="_blank" rel="noopener">ثبت‌نام</a>
+        <a href="#register" class="btn-primary">ثبت‌نام</a>
         <a href="#file" class="btn-ghost">پرونده‌ی کارگاه</a>
       </div>
     </div>
@@ -237,8 +251,9 @@ footer{border-top:1px solid var(--line);padding:24px 0}
   <div class="wrap">
     <div class="info3">
       <div><span class="mono">DATE</span><b>۲۶ تا ۲۹ آبان ۱۴۰۵</b><small>چهار روز، سه‌شنبه تا جمعه</small></div>
+      <div><span class="mono">FORMAT</span><b>۶ نوبت آنلاین · ۲ نوبت حضوری</b><small>حضوری‌ها در اصفهان؛ زمان و مکان به‌زودی اعلام می‌شود</small></div>
       <div><span class="mono">SEATS</span><b>ظرفیت ۳۰ نفر</b><small>گروهی کوچک برای کار عملی</small></div>
-      <div><span class="mono">FEE</span><b>۲٫۵ میلیون تومان</b><small>دارای تخفیف؛ شرایط هنگام ثبت‌نام اعلام می‌شود</small></div>
+      <div><span class="mono">FEE</span><b>۲٫۵ میلیون تومان</b><small>تخفیف: ۲۰٪ زودهنگام تا ۱۰ آبان · ۱۵٪ اعضای نظام صنفی رایانه‌ای · ۱۰٪ اعضای باشگاه اعضا (جمع نمی‌شود)</small></div>
     </div>
   </div>
 </section>
@@ -277,6 +292,48 @@ footer{border-top:1px solid var(--line);padding:24px 0}
   </div>
 </section>
 
+
+<section class="section" id="register">
+  <div class="wrap">
+    <div class="section-head"><h2>ثبت‌نام</h2><p>پس از ثبت‌نام، شماره‌ی کارت و راهنمای پرداخت به‌صورت خصوصی در تلگرام برایتان ارسال می‌شود. با تأیید پرداخت، ثبت‌نام قطعی و عضویت باشگاه اعضا فعال می‌شود.</p></div>
+    <div class="reg-grid">
+      <form id="reg-form" class="rform" novalidate>
+        <label>نام و نام خانوادگی<input name="name" maxlength="60" autocomplete="name" required></label>
+        <label>موبایل، آیدی تلگرام یا ایمیل<input name="contact" maxlength="120" autocomplete="off" required></label>
+        <div class="two">
+          <label>سازمان (اختیاری)<input name="org" maxlength="80"></label>
+          <label>سمت (اختیاری)<input name="role" maxlength="60"></label>
+        </div>
+        <div class="two">
+          <label>شماره‌ی عضویت نظام صنفی (اختیاری)<input name="nsr" maxlength="30" autocomplete="off"></label>
+          <label>کد عضویت باشگاه اعضا (اختیاری)<input name="member_code" maxlength="6" autocomplete="off" style="text-transform:uppercase;direction:ltr"></label>
+        </div>
+        <label>جلسات حضوری اصفهان
+          <select name="attendance"><option value="all">می‌توانم در جلسات حضوری هم شرکت کنم</option><option value="online">فقط آنلاین</option></select>
+        </label>
+        <label>توضیح (اختیاری)<textarea name="note" maxlength="500"></textarea></label>
+        <input class="hpf" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div id="reg-msg" class="reg-msg" role="status"></div>
+        <button class="btn-primary" type="submit" id="reg-btn">ثبت‌نام</button>
+      </form>
+      <aside class="rside">
+        <h3>باشگاه اعضا</h3>
+        <p>هر کس در کارگاه یا وبینارهای داناوان و برندوان شرکت کند، پس از تأیید پرداخت عضو باشگاه می‌شود و یک کد عضویت می‌گیرد. با این کد در ثبت‌نام‌های بعدی از تخفیف عضویت استفاده می‌کند.</p>
+        <form id="mem-form" class="rform small" novalidate>
+          <label>بررسی کد عضویت<input name="code" maxlength="6" autocomplete="off" style="text-transform:uppercase;direction:ltr"></label>
+          <div id="mem-msg" class="reg-msg" role="status"></div>
+          <button class="btn-ghost" type="submit">بررسی</button>
+        </form>
+        <form id="st-form" class="rform small" novalidate>
+          <label>پیگیری ثبت‌نام با کد<input name="code" maxlength="6" autocomplete="off" style="text-transform:uppercase;direction:ltr"></label>
+          <div id="st-msg" class="reg-msg" role="status"></div>
+          <button class="btn-ghost" type="submit">پیگیری</button>
+        </form>
+      </aside>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="join">
   <div class="wrap">
     <div class="section-head"><h2>ارائه‌دهنده و همکاران</h2><p>پرویز معین، مشاور دارای پروانه‌ی مشاوره در رشته‌های هوش مصنوعی و مشاوره‌ی مدیریت تحول دیجیتال. کارگاه با همکاری برندوان برگزار می‌شود.</p></div>
@@ -302,5 +359,47 @@ footer{border-top:1px solid var(--line);padding:24px 0}
     <div class="giant-mark">DANAONE</div>
   </div>
 </footer>
+<script>
+(function(){
+  var API="https://brandone.ir/api/";
+  var TG="https://t.me/sirparviz?text=";
+  function $(s){return document.querySelector(s);}
+  var fa=function(n){return String(n).replace(/\d/g,function(d){return "۰۱۲۳۴۵۶۷۸۹"[d];});};
+  var money=function(n){return fa(Number(n).toLocaleString("en-US").replace(/,/g,"٬"));};
+  function call(path,opts){return fetch(API+path,opts).then(function(r){return r.json().catch(function(){return {};}).then(function(j){j._s=r.status;return j;});});}
+  function el(tag,text,cls){var e=document.createElement(tag);if(text)e.textContent=text;if(cls)e.className=cls;return e;}
+  var rf=$("#reg-form");
+  if(rf) rf.addEventListener("submit",function(e){
+    e.preventDefault();
+    var msg=$("#reg-msg"),btn=$("#reg-btn"),fd=new FormData(rf),body={};
+    fd.forEach(function(v,k){body[k]=v;});
+    msg.className="reg-msg";msg.textContent="";btn.disabled=true;
+    call("register",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)}).then(function(j){
+      btn.disabled=false;
+      if(!j.ok){msg.className="reg-msg err";msg.textContent=j.error||"ثبت‌نام انجام نشد؛ دوباره تلاش کنید.";return;}
+      var box=el("div",null,"reg-done");
+      box.appendChild(el("b",j.waitlist?"در لیست انتظار ثبت شدید":"ثبت‌نام اولیه انجام شد ✅"));
+      var c=el("div","کد ثبت‌نام: ");c.appendChild(el("span",j.code,"code"));box.appendChild(c);
+      box.appendChild(el("div","مبلغ: "+money(j.price)+" تومان"+(j.discount?" ("+j.discount+")":"")));
+      var m=el("div","کد عضویت باشگاه: ");m.appendChild(el("span",j.club_code,"code"));m.appendChild(document.createTextNode(" (پس از تأیید پرداخت فعال می‌شود)"));box.appendChild(m);
+      box.appendChild(el("div",j.waitlist?"در صورت آزاد شدن جا، از طریق همین راه تماس با شما هماهنگ می‌شود.":"برای پرداخت کارت‌به‌کارت، همین کد را در تلگرام بفرستید تا شماره‌ی کارت به‌صورت خصوصی برایتان ارسال شود. سپس فیش را با همان کد بفرستید."));
+      var a=el("a","ارسال کد در تلگرام","btn-primary");a.href=TG+encodeURIComponent("سلام، کد ثبت‌نام کارگاه من: "+j.code);a.target="_blank";a.rel="noopener";box.appendChild(a);
+      rf.replaceWith(box);
+    }).catch(function(){btn.disabled=false;msg.className="reg-msg err";msg.textContent="اتصال برقرار نشد؛ دوباره تلاش کنید یا در تلگرام پیام بدهید.";});
+  });
+  function lookup(formSel,msgSel,path,fmt){
+    var f=$(formSel);if(!f)return;
+    f.addEventListener("submit",function(e){
+      e.preventDefault();var msg=$(msgSel),code=f.elements.code.value.trim().toUpperCase();
+      msg.className="reg-msg";msg.textContent="";if(!code)return;
+      call(path+encodeURIComponent(code)).then(function(j){
+        if(j.status){msg.className="reg-msg ok";msg.textContent=fmt(j);}else{msg.className="reg-msg err";msg.textContent=j.error||"پیدا نشد";}
+      }).catch(function(){msg.className="reg-msg err";msg.textContent="اتصال برقرار نشد";});
+    });
+  }
+  lookup("#mem-form","#mem-msg","member/",function(j){return j.status==="active"?"عضو فعال ✅ (۱۰٪ تخفیف عضویت)":"عضویت هنوز فعال نشده (پس از تأیید پرداخت فعال می‌شود)";});
+  lookup("#st-form","#st-msg","registration/",function(j){var m={pending:"در انتظار تأیید پرداخت",confirmed:"قطعی شد ✅",declined:"رد شد",waitlist:"در لیست انتظار"};return m[j.status]||j.status;});
+})();
+</script>
 </body>
 </html>
